@@ -2,6 +2,7 @@ name: CI
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened]
     branches: [main]
   push:
     branches: [main]
@@ -22,5 +23,5 @@ jobs:
       - name: Validate Python syntax
         run: python -m py_compile main.py
 
-      - name: Run application
-        run: python main.py
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
